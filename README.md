@@ -1,6 +1,11 @@
-# forensics-toolkit
+# Forensics Toolkit
 
 This toolkit was prepared as part of IT 566 Digital Forenics class at BYU. It contains a digital database of tools and guides I use, write and discover during this course.
+
+
+### [Acquisition](https://github.com/jharris1829/forensics-toolkit/#Acquisition)
+### [Analysis](https://github.com/jharris1829/forensics-toolkit/#Analysis)
+### [Other](https://github.com/jharris1829/forensics-toolkit/#Other)
 
 ## Acquisition
 
@@ -149,130 +154,155 @@ Snort can be very helpful in finding the needle of an issue in a haystack of log
 Installation for both Unix and Windows OS can be found [here](https://www.snort.org/)
 
 
-### Rekall
+### Volatility
 
 ##### Description
 
+The Volatility Framework is an open source collection of tools, implemented in Python under the GNU General Public License, for the extraction of digital artifacts from volatile memory (RAM) samples. The extraction techniques are performed completely independent of the system being investigated but offer visibility into the runtime state of the system. The framework is intended to introduce people to the techniques and complexities associated with extracting digital artifacts from volatile memory samples and provide a platform for further work into this exciting area of research.
+
 ##### My Thoughts
+
+While Volatility provides many of the same features Rekall does (both Python based, both command-line based, both intended for memory analysis) Volatility requires the use of profiles, which are difficult to both obtain and use, especially if the computer you are working with is not a common OS release or is too new for a proper profile to have been built. Additionally, Volatility seems to be much slower than Rekall in performing standard memory analysis procedures.
 
 ##### Where to Find It
 
+The Volatility tool is available for Windows, Linux and Mac operating system ([source](https://github.com/volatilityfoundation/volatility/wiki/Installation)). For Windows and Mac OSes, [standalone executables](https://www.volatilityfoundation.org/releases) are available and it can be installed on Ubuntu 16.04 LTS using following command.
 
-### Rekall
+```apt-get install volatility```
+
+Usage notes:
+>The Volatility tool is used to determine that either the PC is infected or not. As we know that, the malicious program can be extracted from the running processes from the memory dump.  So, first of all, it is required to identify the supported “profiles” for the dumped memory image. The ```imageinfo``` command is used to identify the “profiles” for the image.
+
+
+### Wireshark
 
 ##### Description
 
+Wireshark is a network packet analyzer. A network packet analyzer will try to capture network packets and tries to display that packet data as detailed as possible.
+
+You could think of a network packet analyzer as a measuring device used to examine what’s going on inside a network cable, just like a voltmeter is used by an electrician to examine what’s going on inside an electric cable (but at a higher level, of course).
+
+In the past, such tools were either very expensive, proprietary, or both. However, with the advent of Wireshark, all that has changed.
+
 ##### My Thoughts
+
+Wireshark is hands down the best network and packet analyzer. Part of it's strength lies in the filters that you are able to place and then the ability to track the transmission stream to find out exactly what happened. Network traffic is so vital in digital forensics and Wireshark will be at the forefront of those investigations
 
 ##### Where to Find It
 
+[System Requirement](https://www.wireshark.org/docs/wsug_html_chunked/ChIntroPlatforms.html)
 
-### Rekall
+[Downloads](https://www.wireshark.org/download.html)
+
+
+### WinPrefetchView
 
 ##### Description
 
+WinPrefetchView is a small utility that reads the Prefetch files stored in your system and displays the information stored in them. By looking in these files, you can learn which files every application is using, and which files are loaded on Windows boot.
+
+WinPrefetchView Key Features:
+* View files that are prefetched when applications are loaded up
+* See the file relationships between applications and other files they access
+* Examine files that Windows uses when booting up
+* Possible to use as a diagnostic tool with files infected with a virus
+
 ##### My Thoughts
+
+Prefetch files are very valuable in forensic investigations when it comes to determine a timeline of events and files. Autopsy also has the ability to see prefetch files but WinPrefetchView is specifically target to these files and as such does a very good job of analyzing them.
 
 ##### Where to Find It
 
+WinPrefetchView can be found at [NirSoft](https://www.nirsoft.net/utils/win_prefetch_view.html)
 
-### Rekall
+
+### VirusTotal
 
 ##### Description
 
+A free service that analyzes files and URLs for viruses, worms, trojans and other kinds of malicious content. Fortune 500 companies, governments and leading security companies are all part of the VirusTotal community, which has grown to over 500,000 registered users.
+
 ##### My Thoughts
+
+VirusTotal aggregates many antivirus products and online scan engines to check for viruses that the user’s own antivirus may have missed, or to verify against any false positives. It is a very useful site if you are able to get a hold of a potentially dangerous file without a way to sandbox or safely work with it yourself.
 
 ##### Where to Find It
 
+[VirusTotal](https://www.virustotal.com/#/home/upload)
 
-### Rekall
+
+### Ghidra
 
 ##### Description
 
+Ghidra is a software reverse engineering (SRE) framework created and maintained by the National Security Agency Research Directorate. This framework includes a suite of full-featured, high-end software analysis tools that enable users to analyze compiled code on a variety of platforms including Windows, macOS, and Linux. Capabilities include disassembly, assembly, decompilation, graphing, and scripting, along with hundreds of other features. Ghidra supports a wide variety of processor instruction sets and executable formats and can be run in both user-interactive and automated modes. Users may also develop their own Ghidra plug-in components and/or scripts using Java or Python.
+
 ##### My Thoughts
+
+I have yet to use Ghidra but the NSA has an incredible cyber security division and has some of the most powerful tools in the industry. Some top security engineers and analysts have stated that Ghidra is more powerful and usable than any other SRE tool on the market.
 
 ##### Where to Find It
 
+Ghidra can be downloaded from the NSA's GitHub repository [here](https://github.com/NationalSecurityAgency/ghidra)
 
 
+## Other
 
+These tools were written by me for specific application or use but the code can be altered for other applications
 
+### hashFiles
 
+##### Description
 
+This tool was written in python and can be used to obtain hashes for all the files in a given directory. It utilizes the hashlib python library
 
+##### Source Code
 
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Found in this repository under the name hashFiles.py and found below:
 
 ```
-until finished
+import os, os.path
+import sys
+import hashlib
+
+cwd = os.getcwd()
+
+for file in os.listdir(cwd):
+    filename = os.fsdecode(file)
+    if filename != 'hashFiles.py' and not filename.startswith('Hash_'):
+        BLOCKSIZE = 65536
+        md_hasher = hashlib.md5()
+        with open(file, 'rb') as afile:
+            print('Hashing MD5 for: ' + filename)
+            buf = afile.read(BLOCKSIZE)
+            while len(buf) > 0:
+                md_hasher.update(buf)
+                buf = afile.read(BLOCKSIZE)
+
+        BLOCKSIZE = 65536
+        sha_hasher = hashlib.sha1()
+        with open(file, 'rb') as afile:
+            print('Hashing SHA1 for: ' + filename)
+            buf = afile.read(BLOCKSIZE)
+            while len(buf) > 0:
+                sha_hasher.update(buf)
+                buf = afile.read(BLOCKSIZE)
+        
+        print('Writing Hash File')
+        hash_file_name = 'Hash_' + filename + '.txt'
+        with open(hash_file_name, "w") as hfile:
+            hfile.write("MD5: " + md_hasher.hexdigest() + "\n")
+            hfile.write("SHA1: " + sha_hasher.hexdigest())
+        hfile.close()
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+### scrapeData
 
-Explain how to run the automated tests for this system
+##### Description
 
-### Break down into end to end tests
+This tool was written in python for scraping data from a sports website. The code was customized for a specific purpose, however it can easliy be altered to grab data for any use. It utilizes the BeautifulSoup library.
 
-Explain what these tests test and why
+##### Source Code
 
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+Found in this repository under the name scrapeData.py
