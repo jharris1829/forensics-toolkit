@@ -3,9 +3,15 @@
 This toolkit was prepared as part of IT 566 Digital Forenics class at BYU. It contains a digital database of tools and guides I use, write and discover during this course.
 
 
-### [Acquisition](https://github.com/jharris1829/forensics-toolkit/#Acquisition)
-### [Analysis](https://github.com/jharris1829/forensics-toolkit/#Analysis)
-### [Other](https://github.com/jharris1829/forensics-toolkit/#Other)
+* [Acquisition](https://github.com/jharris1829/forensics-toolkit/#Acquisition)
+* [Analysis](https://github.com/jharris1829/forensics-toolkit/#Analysis)
+* [Other](https://github.com/jharris1829/forensics-toolkit/#Other)
+
+Skip to:
+* [Windows](https://github.com/clingeric/forensic-toolkit/#Windows)
+* [Linux](https://github.com/clingeric/forensic-toolkit/#Linux)
+* [Mac](https://github.com/clingeric/forensic-toolkit/#Mac)
+
 
 ## Acquisition
 
