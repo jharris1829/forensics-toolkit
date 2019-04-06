@@ -118,6 +118,8 @@ The Rekall Framework is a completely open collection of tools, developed by Goog
 
 ##### My Thoughts
 
+Rekall ended up being more difficult to install on my system than I thought it would be (my own fault for using Windows...), but after it was installed it was a very in depth tool. It uses modules to parse through the memory and output information but some modules only work for certain operating systems and the outputs can be hard to read. It's not a simple plug and play tool but with experience it could be very valuable
+
 ##### Where to Find It
 
 Rekall is available as a python package installable via the pip package manager. To install it, first create a virtal env, switch to it and then install rekall:
@@ -130,6 +132,74 @@ $ virtualenv  /tmp/MyEnv
  $ pip install rekall-agent rekall
 ```
 For windows, Rekall is also available as a self contained installer package. Please check the download page for the most appropriate installer to use [Rekall-Forensic.com](http://www.rekall-forensic.com/)
+
+
+### Snort
+
+##### Description
+
+A free, open source network intrusion detection and prevention system capable of performing real-time traffic analysis and packet logging on IP networks. Initially called a “lightweight” intrusion detection technology, Snort has evolved into a mature, feature-rich IPS technology that has become the de facto standard in intrusion detection and prevention. With over 4 million downloads and nearly 400,000 registered users, it is the most widely deployed intrusion prevention technology in the world.
+
+##### My Thoughts
+
+Snort can be very helpful in finding the needle of an issue in a haystack of logs and network traffic. Snort was very helpful in finding where to further investigate. However an IDS system is only as good as its definitions and rules. With ample time given to setting up proper rules for an environment, Snort could be a very good resource.
+
+##### Where to Find It
+
+Installation for both Unix and Windows OS can be found [here](https://www.snort.org/)
+
+
+### Rekall
+
+##### Description
+
+##### My Thoughts
+
+##### Where to Find It
+
+
+### Rekall
+
+##### Description
+
+##### My Thoughts
+
+##### Where to Find It
+
+
+### Rekall
+
+##### Description
+
+##### My Thoughts
+
+##### Where to Find It
+
+
+### Rekall
+
+##### Description
+
+##### My Thoughts
+
+##### Where to Find It
+
+
+### Rekall
+
+##### Description
+
+##### My Thoughts
+
+##### Where to Find It
+
+
+
+
+
+
+
+
 
 ```
 Give examples
