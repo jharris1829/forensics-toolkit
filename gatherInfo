@@ -1,0 +1,40 @@
+#!/bin/bash
+ 
+echo "#############################" >> .gathered_info
+echo "#Linux info gather script" >> .gathered_info
+echo "#############################" >> .gathered_info
+echo " " >> .gathered_info
+echo "[+]Running whoami..."
+echo "*********WHOAMI**************" >> .gathered_info
+whoami >> .gathered_info
+echo "[+]Gathering hosts..."
+echo "*********HOSTS FILE**********" >> .gathered_info
+echo " " >> .gathered_info
+cat /etc/hosts >> .gathered_info
+echo " " >> .gathered_info
+echo "[+]Gathering network info..."
+echo "*********IFCONFIG************" >> .gathered_info
+echo " " >> .gathered_info
+/sbin/ifconfig >> .gathered_info
+echo " " >> .gathered_info
+echo "[+]Gathering arp info..."
+echo "*********ARP****************" >> .gathered_info
+echo " " >> .gathered_info
+/usr/sbin/arp -a >> .gathered_info
+echo " " >> .gathered_info
+echo "[+]Gathering IPtables..."
+echo "********IPtables************" >> .gathered_info
+echo " " >> .gathered_info
+/sbin/iptables -L >> .gathered_info
+echo " " >> .gathered_info
+echo "[+]Gathering Route info..."
+echo "********Route info**********" >> .gathered_info
+echo " " >> .gathered_info
+/sbin/route >> .gathered_info
+echo " " >> .gathered_info
+echo "[+]Gathering Shadow file..."
+echo "********Shadow file*********" >> .gathered_info
+echo " " >> .gathered_info
+/bin/cat /etc/shadow >> .gathered_info
+echo " " >> .gathered_info
+echo "****************************" >> .gathered_info
