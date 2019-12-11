@@ -1,6 +1,6 @@
 #! /bin/bash
 
-read -r -p "Commit Message: " msg
+read -r -p "Commit Message" msg
 git add .
 git add -u
 git commit -m "$msg"

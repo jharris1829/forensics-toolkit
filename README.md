@@ -1,4 +1,4 @@
-# Forensics Toolkit
+# Forensics Toolkit by Josh
 
 This toolkit was prepared as part of IT 566 Digital Forenics class at BYU. It contains a digital database of tools and guides I use, write and discover during this course.
 
